@@ -1,0 +1,7 @@
+Package: chromium chromium-sandbox chromium-common
+Pin: release a=unstable
+Pin-Priority: 990
+
+Package: firefox libnss3 libnss3:i386 libnss3-dev
+Pin: release a=unstable
+Pin-Priority: 990

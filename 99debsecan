@@ -1,0 +1,1 @@
+APT::Update::Post-Invoke { "/usr/sbin/debsecan-apt-priority"; };
