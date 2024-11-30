@@ -27,3 +27,5 @@ URIs: http://deb.debian.org/debian
 Suites: trixie-proposed-updates
 Components: main contrib non-free non-free-firmware
 Enabled: no
+Signed-By:
+ /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc
