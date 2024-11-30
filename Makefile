@@ -9,7 +9,6 @@ else
 	install -o root -g root -m 0644 99debsecan /etc/apt/apt.conf.d/
 	install -o root -g root -m 0755 debsecan-apt-priority /usr/sbin/
 	install -o root -g root -m 0644 pinning /etc/apt/preferences.d/20non-default
-	install -o root -g root -m 0644 unstable-packages /etc/apt/preferences.d/
 	apt-get update
 	apt-cache policy
 endif
@@ -26,4 +25,12 @@ else
 	sed 's/bookworm/trixie/g' /usr/share/doc/apt/examples/sources.list > /etc/apt/sources.list
 	apt-get update
 	apt-cache policy
+endif
+browser:
+ifneq ($(shell id -u), 0)
+	sudo make $@
+else
+	install -o root -g root -m 0644 unstable-packages /etc/apt/preferences.d/
+	apt-get update
+	apt-cache policy chromium firefox
 endif

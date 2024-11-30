@@ -28,13 +28,23 @@ the commands below will automate the following:
 - add deb822.sources for trixie and sid with all suites enabled by default
 - set a low pinning for sid to 100. see [apt_preferences](https://manpages.debian.org/testing/apt/apt_preferences.5.en.html) for more information.
 - configure debsecan to run with each `apt update`
-- set chromium and firefox to be pinned on the version from sid
 
 ```shell
 make install
 ```
 
 you can view the list of packages which will be installed from unstable in `/var/lib/debsecan/apt_preferences`
+
+# special cases
+
+i recommend **always** running chromium and firefox from unstable.
+
+this can be achieved with the following:
+
+```shell
+make browser
+sudo apt install -y chromium firefox
+```
 
 # uninstallation
 
