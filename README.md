@@ -18,52 +18,28 @@ inspired by https://bugs.debian.org/725934
 
 these instructions assume you've cloned this repository and that it is your working directory.
 
-these scripts assume that you are running debian testing and have enabled the unstable repositories but pinned at a lower priority by default.
-
-this can usually be achieved by running the commands below:
-
-**USE WITH CAUTION** and check that the output looks reasonable before proceeding.
-
-```shell
-sudo ./configure-sources.sh
-
-sudo apt full-upgrade --autoremove --purge
-```
+these scripts assume that you are running debian testing and didn't configure any pinning outside the norm.
 
 # installation
 
 the commands below will automate the following:
 
-- change your sources.list to include debian testing and debian unstable
-- enable the unstable repositories pinned at a lower priority
+- remove your sources.list
+- add deb822.sources for trixie and sid with all suites enabled by default
+- set a low pinning for sid to 100. see [apt_preferences](https://manpages.debian.org/testing/apt/apt_preferences.5.en.html) for more information.
 - configure debsecan to run with each `apt update`
+- set chromium and firefox to be pinned on the version from sid
 
 ```shell
-sudo ./enable-unstable-updates.sh
-
-sudo apt full-upgrade --autoremove --purge
+make install
 ```
 
 you can view the list of packages which will be installed from unstable in `/var/lib/debsecan/apt_preferences`
-
-# special cases
-
-i recommend **always** running chromium and firefox from unstable.
-
-this can be achieved with the following:
-
-```shell
-sudo cp ./unstable-packages /etc/apt/preferences.d/unstable-packages
-
-sudo apt update
-
-sudo apt install -y chromium firefox
-```
 
 # uninstallation
 
 note: uninstalling will not downgrade packages to their testing versions. you will need to do this yourself or wait for the packages to catch up on their own (which should typically happen within a few weeks).
 
 ```shell
-./disable-unstable-updates.sh
+make uninstall
 ```
