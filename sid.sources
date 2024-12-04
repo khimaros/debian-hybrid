@@ -1,0 +1,8 @@
+Types: deb deb-src
+URIs: http://deb.debian.org/debian
+Suites: sid
+Components: main contrib non-free non-free-firmware
+Enabled: yes
+Signed-By:
+ /etc/apt/trusted.gpg.d/debian-archive-bookworm-automatic.asc
+ /etc/apt/trusted.gpg.d/debian-archive-bookworm-security-automatic.asc

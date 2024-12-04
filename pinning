@@ -1,0 +1,16 @@
+# anything below 100 won't get automatic updates
+Package: *
+Pin: release n=sid
+Pin-Priority: 100
+
+Package: *
+Pin: release n=trixie-proposed-updates
+Pin-Priority: 400
+
+Package: *
+Pin: release n=trixie-backports
+Pin-Priority: 450
+
+Package: *
+Pin: release n=trixie
+Pin-Priority: 500
