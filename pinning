@@ -1,0 +1,16 @@
+# anything up to 100 won't get automatic updates
+Package: *
+Pin: release n=sid
+Pin-Priority: 100
+
+Package: *
+Pin: release n=testing-proposed-updates
+Pin-Priority: 400
+
+Package: *
+Pin: release n=testing-backports
+Pin-Priority: 450
+
+Package: *
+Pin: release n=testing
+Pin-Priority: 500
