@@ -7,7 +7,8 @@
 
 set -euo pipefail
 
-echo "running debsecan check for issues fixed in unstable..." >&2
+current_suite=$(grep -oP '(?<=VERSION_CODENAME=).+' /etc/os-release | tr -d '"')
+echo "running debsecan check for "$current_suite" issues fixed in unstable..." >&2
 
 rm -f /var/lib/debsecan/apt_preferences.disabled
 
@@ -16,7 +17,7 @@ cat > /var/lib/debsecan/apt_preferences.disabled <<EOF
 # generated automatically on $(date) by $0
 EOF
 
-for pkg in $(debsecan --suite=sid --only-fixed | cut -d\  -f2 | sort -u) ; do
+for pkg in $(debsecan --suite="$current_suite" --only-fixed | cut -d\  -f2 | sort -u) ; do
     suite=unstable
     case "$pkg" in
         *-dbgsym)
