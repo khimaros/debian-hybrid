@@ -23,10 +23,16 @@ for pkg in $(debsecan --suite=sid --only-fixed | cut -d\  -f2 | sort -u) ; do
             suite=unstable-debug
             ;;
     esac
+    packages="$pkg:any"
+    # Keep installed architectures and source-package companions in sync.
+    source=$(dpkg-query -W -f='${source:Package}\n' "$pkg" 2>/dev/null | sort -u) || source=
+    if [ -n "$source" ]; then
+        packages="$packages src:$source:any"
+    fi
     echo "adding pin to suite $suite for package $pkg" >&2
     cat <<EOF >> /var/lib/debsecan/apt_preferences.disabled
 
-Package: $pkg
+Package: $packages
 Pin: release a=$suite
 Pin-Priority: 990
 EOF
